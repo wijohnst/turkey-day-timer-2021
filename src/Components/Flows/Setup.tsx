@@ -44,29 +44,30 @@ const ErrorText = styled.span`
 // Local Types
 type Props = {
 	completeSetup: () => void,
+	setAppState: (data: any) => void,
 }
 
-type FormValues = {
-	turkeyTime: NestedValue<Date> | null,
-	recipes: {
-		name: string,
-		totalPrepTime: string,
-		prepTimeUnit: string,
-		link?: string,
-	}[];
-}
+// type FormValues = {
+// 	turkeyTime: NestedValue<Date> | null,
+// 	recipes: {
+// 		name: string,
+// 		totalPrepTime: string,
+// 		prepTimeUnit: string,
+// 		link?: string,
+// 	}[];
+// }
 
 // Render
-const Setup = ({ completeSetup } : Props) => {
+const Setup = ({ completeSetup, setAppState } : Props) => {
 
 	const initialAppState : AppState = {
 		turkeyTime: null,
 		recipes: null,
 	}
 
-	const [appState, setAppState] = useLocalStorage<AppState>("userApp", initialAppState);
+	// const [appState, setAppState] = useLocalStorage<AppState>("userApp", initialAppState);
 
-	const { register, handleSubmit, watch, control, formState : { errors } } = useForm<FormValues>();
+	const { register, handleSubmit, watch, control, formState : { errors } } = useForm();
 	const { fields, append, remove } = useFieldArray({
 		name: "recipes",
 		control
@@ -74,7 +75,7 @@ const Setup = ({ completeSetup } : Props) => {
 
 	const onSubmit = handleSubmit((data) => {
 		// @ts-ignore - Can't reconcile app state and form state
-		setAppState(data) 
+		setAppState(data)
 		completeSetup();
 	});
 

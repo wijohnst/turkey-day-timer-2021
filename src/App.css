@@ -6,7 +6,7 @@ html,
 	margin: 0;
 	height: 100%;
 	width: 100%;
-	background-color: lightpink;
+	background: linear-gradient(180deg, rgba(233, 193, 49, 0) 0%, #E9C131 45.83%);
 	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
 	font-weight: 300;
